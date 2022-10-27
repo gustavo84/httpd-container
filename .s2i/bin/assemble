@@ -13,7 +13,13 @@ echo "test"
 
 pwd
 
-echo $(ls)
+ls ${HTTPD_CONTAINER_SCRIPTS_PATH}
+
+ls ${HTTPD_APP_ROOT}
+
+ls ${HTTPD_APP_ROOT}/src/httpd-post-assemble/
+
+ls ${HTTPD_CONTAINER_SCRIPTS_PATH}/post-assemble/
 
 # unzip -d /tmp/data/ WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
 
