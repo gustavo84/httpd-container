@@ -9,6 +9,8 @@ echo "---> Enabling s2i support in httpd24 image"
 config_s2i
 
 echo "---> Installing application source"
+echo "test"
+
 cp -af /tmp/src/. ./
 rm -rf ./.hg ./.git ./.svn
 
