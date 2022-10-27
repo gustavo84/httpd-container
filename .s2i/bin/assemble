@@ -13,19 +13,9 @@ echo "test"
 
 pwd
 
-ls ${HTTPD_CONTAINER_SCRIPTS_PATH}
+curl https://github.com/gustavo84/httpd-container/raw/master/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
 
-ls ${HTTPD_CONTAINER_SCRIPTS_PATH}/pre-init
-
-ls ${HTTPD_APP_ROOT}
-
-#ls ${HTTPD_APP_ROOT}
-
-#ls ${HTTPD_APP_ROOT}/src/httpd-post-assemble/
-
-#ls ${HTTPD_CONTAINER_SCRIPTS_PATH}/post-assemble/
-
-unzip -d /tmp/data/ ${HTTPD_CONTAINER_SCRIPTS_PATH}/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
+unzip WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
 
 
 cp -af /tmp/src/. ./
