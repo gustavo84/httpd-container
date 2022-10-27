@@ -21,7 +21,7 @@ rm -rf ./.hg ./.git ./.svn
 
 curl https://github.com/gustavo84/httpd-container/raw/master/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
 
-unzip WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
+unzip ./WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
 
 # Fix source directory permissions
 fix-permissions ./
