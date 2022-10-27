@@ -13,9 +13,9 @@ echo "test"
 
 pwd
 
-ls
+echo $(ls)
 
-unzip -d /tmp/data/ WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
+# unzip -d /tmp/data/ WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
 
 
 cp -af /tmp/src/. ./
