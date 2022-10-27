@@ -15,7 +15,9 @@ pwd
 
 ls ${HTTPD_CONTAINER_SCRIPTS_PATH}
 
-ls ${HTTPD_APP_ROOT}
+ls ${HTTPD_CONTAINER_SCRIPTS_PATH}/pre-init
+
+#ls ${HTTPD_APP_ROOT}
 
 #ls ${HTTPD_APP_ROOT}/src/httpd-post-assemble/
 
