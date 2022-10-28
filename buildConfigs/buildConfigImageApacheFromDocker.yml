@@ -7,19 +7,16 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 's2i-build-httpd-test3:latest'
+      name: 'httpd-unix:2.4_wlp12.2.1.4.0_v1.0:latest'
   source:
     git:
       ref: master
       uri: 'https://github.com/gustavo84/httpd-container'
     type: Git
   strategy:
-    type: Source
-    sourceStrategy:
-      from:
-        kind: ImageStreamTag
-        name: 'httpd-unix:2.4_wlp12.2.1.4.0_v1.0:latest'
-      env: []
+    type: Docker                      
+    dockerStrategy:
+      dockerfilePath: Dockerfile
   triggers:
     - type: ImageChange
       imageChange: {}
