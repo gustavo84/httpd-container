@@ -30,3 +30,5 @@ process_extending_files ${HTTPD_APP_ROOT}/src/httpd-post-assemble/ ${HTTPD_CONTA
 
 # Fix source directory permissions
 fix-permissions ./
+
+ls "./"
