@@ -18,7 +18,7 @@ echo "Install weblogic plugin on apache"
 echo "START: Custom image"
 
 unzip -d ./wl-plugin ./plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
-echo "LoadModule weblogic_module /wl-plugin/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
+echo "LoadModule weblogic_module /opt/app-root/src/wl-plugin/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
 
 echo "END: Custom image"
 
