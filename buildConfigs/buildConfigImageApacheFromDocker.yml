@@ -7,7 +7,7 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'httpd-unix:2.4_wlp12.2.1.4.0_v1.0:latest'
+      name: 'httpd-unix-2.4_wlp12.2.1.4.0_v1.0:latest'
   source:
     git:
       ref: master
