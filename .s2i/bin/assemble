@@ -23,7 +23,8 @@ rm -rf ./.hg ./.git ./.svn
 
 unzip -d ./wl-plugin ./WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
 
-cp 
+
+#cp ./wl-plugin/pluginWeblogic.conf /etc/ld.so.conf.d/
 
 # Fix source directory permissions
 fix-permissions ./
@@ -32,3 +33,6 @@ process_extending_files ${HTTPD_APP_ROOT}/src/httpd-post-assemble/ ${HTTPD_CONTA
 
 # Fix source directory permissions
 fix-permissions ./
+
+ls /etc/
+ls /etc/ld.so.conf.d/
