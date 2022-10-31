@@ -11,7 +11,7 @@ config_s2i
 echo "---> Installing application source"
 
 echo ${GIT_REPO_STATICS_FILE}
-
+ls "/bin"
 git clone https://github.com/gustavo84/sample_front_app.git
 
 cp -af /tmp/src/. ./
