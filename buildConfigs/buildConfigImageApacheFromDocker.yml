@@ -1,7 +1,7 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: s2i-build-httpd-test3
+  name: httpd-unix-2.4_wlp12.2.1.4.0
   namespace: gus84-dev
 spec:
   output:
