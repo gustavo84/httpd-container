@@ -18,8 +18,12 @@ spec:
     sourceStrategy:
       from:
         kind: ImageStreamTag
-        name: 'httpd-unix:2.4_wlp12.2.1.4.0_v1.0:latest'
-      env: []
+        name: 'httpd-unix-2.4_wlp12.2.1.4.0_v1.0:latest'
+      env:
+        - name: GIT_REPO_STATICS_FILE
+          value: "https://github.com/gustavo84/sample_front_app.git"
+        - name: GIT_REPO_CONFIGS_FILE
+          value: "This repo will get configurations files"          
   triggers:
     - type: ImageChange
       imageChange: {}
