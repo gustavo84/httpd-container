@@ -2,37 +2,10 @@
 
 set -e
 
-source ${HTTPD_CONTAINER_SCRIPTS_PATH}/common.sh
+echo "---> Creating a custom image from Apache plugin weblogic and static files"
 
-echo "---> Enabling s2i support in httpd24 image"
-
-config_s2i
-
-echo "---> Installing application source"
 
 echo ${GIT_REPO_STATICS_FILE}
-
+ls "/bin"
 git clone https://github.com/gustavo84/sample_front_app.git
 
-cp -af /tmp/src/. ./
-rm -rf ./.hg ./.git ./.svn
-
-echo "Install weblogic plugin on apache"
-echo "START: Custom image"
-
-
-#unzip -d ./wl-plugin ./plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip
-#echo "LoadModule weblogic_module /opt/app-root/src/wl-plugin/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
-
-echo "END: Custom image"
-
-
-# Fix source directory permissions
-fix-permissions ./
-
-process_extending_files ${HTTPD_APP_ROOT}/src/httpd-post-assemble/ ${HTTPD_CONTAINER_SCRIPTS_PATH}/post-assemble/
-
-# Fix source directory permissions
-fix-permissions ./
-pwd
-ls "./"
