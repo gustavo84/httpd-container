@@ -4,7 +4,7 @@ RUN echo "LoadModule weblogic_module /tmp/lib/mod_wl_24.so" > /etc/httpd/conf.d/
 ADD https://github.com/git/git/archive/v2.20.1.zip /tmp
 RUN ls -l '/tmp'
 #RUN chmod -R 755 /tmp
-RUN unzip /tmp/v2.20.1.zip
+RUN sudo unzip /tmp/v2.20.1.zip
 
 RUN 'cd /tmp/git-2.20.1/'
 run make prefix=/usr/local all install
