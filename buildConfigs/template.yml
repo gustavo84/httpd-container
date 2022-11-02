@@ -26,7 +26,7 @@ objects:
             name: 'httpd-unix-2.4_wlp12.2.1.4.0_v1.0:latest'
           env:
             - name: ENV_GIT_REPO_STATICS_FILE
-              value: "https://github.com/gustavo84/sample_front_app.git"
+              value: "${GIT_REPO_STATICS_FILE}"
             - name: GIT_REPO_CONFIGS_FILE
               value: "This repo will get configurations files"
             - name: IMAGE_NAME
