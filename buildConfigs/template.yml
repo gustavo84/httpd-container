@@ -12,7 +12,7 @@ objects:
       output:
         to:
           kind: ImageStreamTag
-          name: '${IMAGE_NAME}:latest'
+          name: '${IMAGE_NAME_OUTPUT}:latest'
       source:
         git:
           ref: master
@@ -23,14 +23,12 @@ objects:
         sourceStrategy:
           from:
             kind: ImageStreamTag
-            name: 'httpd-unix-2.4_wlp12.2.1.4.0_v1.0:latest'
+            name: '${IMAGE_NAME_INPUT}:latest'
           env:
             - name: ENV_GIT_REPO_STATICS_FILE
               value: "${GIT_REPO_STATICS_FILE}"
             - name: GIT_REPO_CONFIGS_FILE
-              value: "This repo will get configurations files"
-            - name: IMAGE_NAME
-              value: "httpd-unix-2.4-app"         
+              value: "This repo will get configurations files"       
       triggers:
         - type: ImageChange
           imageChange: {}
@@ -42,6 +40,9 @@ parameters:
   - name: GIT_REPO_CONFIGS_FILE
     description: "the init repo"
     value: "This repo will get configurations files"
-  - name: IMAGE_NAME
+  - name: IMAGE_NAME_OUTPUT
     description: "the init repo"
     value: "httpd-unix-2.4-app"
+  - name: IMAGE_NAME_INPUT
+    description: "the init repo"
+    value: "httpd-unix-2.4_wlp12.2.1.4.0_v1.0"    
