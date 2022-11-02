@@ -9,5 +9,5 @@ echo ${GIT_REPO_STATICS_FILE}
 
 git clone ${GIT_REPO_STATICS_FILE} "/tmp/repo_statics_files"
 
-cp -r /tmp/repo_statics_files/  /var/www/html/htdocs/
+#cp -r /tmp/repo_statics_files/  /var/www/html/htdocs/
 

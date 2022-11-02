@@ -1,13 +1,13 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
-  name: s2i-build-httpd-test3
+  name: httpd-unix-2.4-app
   namespace: gus84-dev
 spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'httpd-unix-2.4_FINAL:latest'
+      name: 'httpd-unix-2.4-app:latest'
   source:
     git:
       ref: master
@@ -25,7 +25,7 @@ spec:
         - name: GIT_REPO_CONFIGS_FILE
           value: "This repo will get configurations files"
         - name: IMAGE_NAME
-          value: "httpd-unix-2.4_FINAL"          
+          value: "httpd-unix-2.4-app"          
   triggers:
     - type: ImageChange
       imageChange: {}
