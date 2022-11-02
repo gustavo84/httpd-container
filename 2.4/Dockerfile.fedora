@@ -1,16 +1,16 @@
-FROM ubi8/s2i-core:1
-
-
+FROM quay.io/fedora/s2i-core:35
 
 # Apache HTTP Server image.
 #
 # Volumes:
 #  * /var/www - Datastore for httpd
-#  * /var/log/httpd24 - Storage for logs when $HTTPD_LOG_TO_VOLUME is set
+#  * /var/log/httpd - Storage for logs when $HTTPD_LOG_TO_VOLUME is set
 # Environment:
-#  * $HTTPD_LOG_TO_VOLUME (optional) - When set, httpd will log into /var/log/httpd24
+#  * $HTTPD_LOG_TO_VOLUME (optional) - When set, httpd will log into /var/log/httpd
 
-ENV HTTPD_VERSION=2.4
+ENV HTTPD_VERSION=2.4 \
+    NAME=httpd \
+    ARCH=x86_64
 
 ENV SUMMARY="Platform for running Apache httpd $HTTPD_VERSION or building httpd-based application" \
     DESCRIPTION="Apache httpd $HTTPD_VERSION available as container, is a powerful, efficient, \
@@ -19,15 +19,26 @@ which extend the core functionality. \
 These can range from server-side programming language support to authentication schemes. \
 Virtual hosting allows one Apache installation to serve many different Web sites."
 
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$SUMMARY" \
+      io.k8s.display-name="Apache httpd $HTTPD_VERSION" \
+      io.openshift.expose-services="8080:http,8443:https" \
+      io.openshift.tags="builder,httpd,httpd24" \
+      com.redhat.component="$NAME" \
+      name="fedora/$NAME-24" \
+      version="$HTTPD_VERSION" \
+      usage="s2i build https://github.com/sclorg/httpd-container.git --context-dir=examples/sample-test-app/ quya.io/fedora/$NAME-24 sample-server" \
+      maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 EXPOSE 8080
 EXPOSE 8443
 
-RUN yum -y module enable httpd:$HTTPD_VERSION && \
-    INSTALL_PKGS="git gettext hostname nss_wrapper bind-utils httpd mod_ssl mod_ldap mod_session mod_security mod_auth_mellon sscg" && \
-    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+RUN dnf install -y yum-utils gettext hostname && \
+    INSTALL_PKGS="nss_wrapper bind-utils httpd mod_ssl mod_ldap mod_session mod_security sscg" && \
+    dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    yum -y clean all --enablerepo='*'
+    dnf clean all
 
 ENV HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/ \
     HTTPD_APP_ROOT=${APP_ROOT} \
@@ -44,14 +55,11 @@ ENV HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/ \
 COPY 2.4/s2i/bin/ $STI_SCRIPTS_PATH
 COPY 2.4/root /
 
+# Generate SSL certs and reset permissions of filesystem to default values
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/httpd-prepare && rpm-file-permissions
 
 USER 1001
-
-ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz /tmp
-#RUN gzip /tmp/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz
-#RUN echo "LoadModule weblogic_module /tmp/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
 
 # Not using VOLUME statement since it's not working in OpenShift Online:
 # https://github.com/sclorg/httpd-container/issues/30
@@ -59,5 +67,3 @@ ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.
 # VOLUME ["${HTTPD_LOG_PATH}"]
 
 CMD ["/usr/bin/run-httpd"]
-
-

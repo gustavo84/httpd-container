@@ -1,7 +1,5 @@
 FROM ubi8/s2i-core:1
 
-
-
 # Apache HTTP Server image.
 #
 # Volumes:
@@ -19,12 +17,24 @@ which extend the core functionality. \
 These can range from server-side programming language support to authentication schemes. \
 Virtual hosting allows one Apache installation to serve many different Web sites."
 
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$DESCRIPTION" \
+      io.k8s.display-name="Apache httpd $HTTPD_VERSION" \
+      io.openshift.expose-services="8080:http,8443:https" \
+      io.openshift.tags="builder,httpd,httpd-24" \
+      name="rhel8/httpd-24" \
+      version="1" \
+      com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#UBI" \
+      com.redhat.component="httpd-24-container" \
+      usage="s2i build https://github.com/sclorg/httpd-container.git --context-dir=examples/sample-test-app/ rhel8/httpd-24 sample-server" \
+      maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 EXPOSE 8080
 EXPOSE 8443
 
 RUN yum -y module enable httpd:$HTTPD_VERSION && \
-    INSTALL_PKGS="git gettext hostname nss_wrapper bind-utils httpd mod_ssl mod_ldap mod_session mod_security mod_auth_mellon sscg" && \
+    INSTALL_PKGS="gettext hostname nss_wrapper bind-utils httpd mod_ssl mod_ldap mod_session mod_security mod_auth_mellon sscg" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum -y clean all --enablerepo='*'
@@ -49,15 +59,9 @@ RUN /usr/libexec/httpd-prepare && rpm-file-permissions
 
 USER 1001
 
-ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz /tmp
-#RUN gzip /tmp/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz
-#RUN echo "LoadModule weblogic_module /tmp/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
-
 # Not using VOLUME statement since it's not working in OpenShift Online:
 # https://github.com/sclorg/httpd-container/issues/30
 # VOLUME ["${HTTPD_DATA_PATH}"]
 # VOLUME ["${HTTPD_LOG_PATH}"]
 
 CMD ["/usr/bin/run-httpd"]
-
-
