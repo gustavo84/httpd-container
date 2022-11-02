@@ -12,7 +12,7 @@ objects:
       output:
         to:
           kind: ImageStreamTag
-          name: 'httpd-unix-2.4-app:latest'
+          name: '${IMAGE_NAME}:latest'
       source:
         git:
           ref: master
@@ -26,8 +26,11 @@ objects:
             name: 'httpd-unix-2.4_wlp12.2.1.4.0_v1.0:latest'
 parameters:
   - name: GIT_REPO_STATICS_FILE
+    description: "the init repo"
     value: "https://github.com/gustavo84/sample_front_app.git"
   - name: GIT_REPO_CONFIGS_FILE
+    description: "the init repo"
     value: "This repo will get configurations files"
   - name: IMAGE_NAME
+    description: "the init repo"
     value: "httpd-unix-2.4-app"
