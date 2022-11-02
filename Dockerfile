@@ -1,4 +1,4 @@
-FROM ubi9/s2i-core:1
+FROM ubi8/s2i-core:1
 
 
 
