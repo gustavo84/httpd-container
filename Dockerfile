@@ -44,7 +44,7 @@ ENV HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/ \
 #COPY 2.4/s2i/bin/ $STI_SCRIPTS_PATH
 COPY 2.4/root /
 
-USER 1001
+#USER 1001
 RUN chown -R 1001:0 /usr/libexec/
 RUN chmod 775 /usr/libexec/httpd-prepare
 # Reset permissions of filesystem to default values
