@@ -7,5 +7,5 @@ echo "---> Creating a custom image from Apache plugin weblogic and static files"
 
 echo ${GIT_REPO_STATICS_FILE}
 
-git clone ${GIT_REPO_STATICS_FILE} "/tmp/"
+git clone ${GIT_REPO_STATICS_FILE} "/tmp/repo_statics_files"
 
