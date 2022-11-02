@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: template.openshift.io/v1
 metadata:
-  name: "${TEMPLATE_NAME}"
+  name: httpd-sample
 objects:
   - kind: BuildConfig
     apiVersion: build.openshift.io/v1
