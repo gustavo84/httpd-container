@@ -16,7 +16,7 @@ objects:
       source:
         git:
           ref: master
-          uri: 'https://github.com/gustavo84/httpd-container'
+          uri: '${S2I_SCRIPTS_REPO}'
         type: Git
       strategy:
         type: Source
@@ -45,4 +45,7 @@ parameters:
     value: "httpd-unix-2.4-app"
   - name: IMAGE_NAME_INPUT
     description: "the start image"
-    value: "httpd-unix-2.4_wlp12.2.1.4.0_v1.0" 
+    value: "httpd-unix-2.4_wlp12.2.1.4.0_v1.0"
+  - name: S2I_SCRIPTS_REPO
+    description: "the S2I assemble file"
+    value: "https://github.com/gustavo84/httpd-container"     
