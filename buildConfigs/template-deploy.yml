@@ -51,7 +51,7 @@ objects:
           - httpd-example
           from:
             kind: ImageStreamTag
-            name: "${IMAGE_NAME_OUTPUT}:latest"
+            name: "httpd-example:latest"
       - type: ConfigChange
       replicas: 1
       selector:
