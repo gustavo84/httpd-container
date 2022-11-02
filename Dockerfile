@@ -45,8 +45,8 @@ ENV HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/ \
 COPY 2.4/root /
 
 #USER 1001
-RUN chown -R 1001:0 /usr/libexec/
-RUN chmod 775 /usr/libexec/httpd-prepare
+RUN chown -R 1001:0 /usr/
+RUN chmod -R 775 /usr/
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/httpd-prepare && rpm-file-permissions
 
