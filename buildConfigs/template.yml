@@ -1,0 +1,33 @@
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: my-template2
+objects:
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: httpd-unix-2.4-app
+      namespace: gus84-dev
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: 'httpd-unix-2.4-app:latest'
+      source:
+        git:
+          ref: master
+          uri: 'https://github.com/gustavo84/httpd-container'
+        type: Git
+      strategy:
+        type: Source
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            name: 'httpd-unix-2.4_wlp12.2.1.4.0_v1.0:latest'
+          env:
+            - name: GIT_REPO_STATICS_FILE
+              value: "https://github.com/gustavo84/sample_front_app.git"
+            - name: GIT_REPO_CONFIGS_FILE
+              value: "This repo will get configurations files"
+            - name: IMAGE_NAME
+              value: "httpd-unix-2.4-app"
