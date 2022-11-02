@@ -44,8 +44,11 @@ ENV HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/ \
 #COPY 2.4/s2i/bin/ $STI_SCRIPTS_PATH
 COPY 2.4/root /
 
-# Reset permissions of filesystem to default values
-#RUN /usr/libexec/httpd-prepare && rpm-file-permissions
+# Add default user and prepare httpd
+RUN useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin \
+      -c "Default Application User" default && \
+  chown -R 1001:0 ${APP_ROOT} && \
+  /usr/libexec/httpd-prepare
 
 USER 1001
 
