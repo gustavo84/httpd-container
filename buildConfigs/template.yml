@@ -45,7 +45,4 @@ parameters:
     value: "httpd-unix-2.4-app"
   - name: IMAGE_NAME_INPUT
     description: "the start image"
-    value: "httpd-unix-2.4_wlp12.2.1.4.0_v1.0"
-  - name: TEMPLATE_NAME
-    description: "the template name"
-    value: "httpd-sample"  
+    value: "httpd-unix-2.4_wlp12.2.1.4.0_v1.0" 
