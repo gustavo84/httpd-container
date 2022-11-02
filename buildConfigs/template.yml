@@ -1,7 +1,7 @@
 kind: Template
 apiVersion: template.openshift.io/v1
 metadata:
-  name: my-template2
+  name: "{TEMPLATE_NAME}"
 objects:
   - kind: BuildConfig
     apiVersion: build.openshift.io/v1
@@ -27,8 +27,8 @@ objects:
           env:
             - name: ENV_GIT_REPO_STATICS_FILE
               value: "${GIT_REPO_STATICS_FILE}"
-            - name: GIT_REPO_CONFIGS_FILE
-              value: "This repo will get configurations files"       
+            - name: ENV_GIT_REPO_CONFIGS_FILE
+              value: "${GIT_REPO_CONFIGS_FILE}"     
       triggers:
         - type: ImageChange
           imageChange: {}
@@ -41,8 +41,11 @@ parameters:
     description: "the init repo"
     value: "This repo will get configurations files"
   - name: IMAGE_NAME_OUTPUT
-    description: "the init repo"
+    description: "the output image"
     value: "httpd-unix-2.4-app"
   - name: IMAGE_NAME_INPUT
-    description: "the init repo"
-    value: "httpd-unix-2.4_wlp12.2.1.4.0_v1.0"    
+    description: "the start image"
+    value: "httpd-unix-2.4_wlp12.2.1.4.0_v1.0"
+  - name: TEMPLATE_NAME
+    description: "the template name"
+    value: "httpd-sample"  
