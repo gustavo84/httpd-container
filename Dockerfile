@@ -44,11 +44,13 @@ ENV HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/ \
 #COPY 2.4/s2i/bin/ $STI_SCRIPTS_PATH
 COPY 2.4/root /
 
-# Add default user and prepare httpd
-RUN chown -R 1001:0 ${APP_ROOT} && \
-  /usr/libexec/httpd-prepare
-
 USER 1001
+RUN chown -R 1001:0 /usr/libexec/
+RUN chmod 775 /usr/libexec/httpd-prepare
+# Reset permissions of filesystem to default values
+RUN /usr/libexec/httpd-prepare && rpm-file-permissions
+
+
 
 ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz /tmp
 #RUN gzip /tmp/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz
