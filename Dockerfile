@@ -1,4 +1,4 @@
-FROM ubi8/s2i-core:rhel8.6
+FROM rhel8/httpd-24
 #RUN yum install -y httpd
 RUN yum install -y git
 
