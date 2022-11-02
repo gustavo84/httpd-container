@@ -24,6 +24,10 @@ objects:
           from:
             kind: ImageStreamTag
             name: 'httpd-unix-2.4_wlp12.2.1.4.0_v1.0:latest'
+      triggers:
+        - type: ImageChange
+          imageChange: {}
+        - type: ConfigChange            
 parameters:
   - name: GIT_REPO_STATICS_FILE
     description: "the init repo"
