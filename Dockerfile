@@ -45,7 +45,7 @@ ENV HTTPD_CONTAINER_SCRIPTS_PATH=/usr/share/container-scripts/httpd/ \
 #COPY 2.4/root /
 
 # Reset permissions of filesystem to default values
-RUN /usr/libexec/httpd-prepare && rpm-file-permissions
+#RUN /usr/libexec/httpd-prepare && rpm-file-permissions
 
 USER 1001
 
