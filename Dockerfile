@@ -51,16 +51,19 @@ RUN chown -R 1001:0 /etc/httpd/
 RUN chmod -R 775 /etc/httpd/
 RUN chown -R 1001:0 /var/www/html/
 RUN chmod -R 775 /var/www/html/
+RUN chown -R 1001:0 /tmp/
+RUN chmod -R 775 /tmp/
 
+RUN mkdir /tmp/wl-plugin
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/httpd-prepare && rpm-file-permissions
 
 
 
-ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz /usr
-RUN gzip /usr/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz
-RUN ls -l "/usr/lib/"
-RUN echo "LoadModule weblogic_module /usr/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
+ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz /tmp/wl-plugin
+RUN gzip /tmp/wl-plugin/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz
+RUN ls -l "/tmp/wl-plugin/lib/"
+RUN echo "LoadModule weblogic_module /tmp/wl-plugin/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
 
 # Not using VOLUME statement since it's not working in OpenShift Online:
 # https://github.com/sclorg/httpd-container/issues/30
