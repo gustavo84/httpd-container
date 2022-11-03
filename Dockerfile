@@ -59,7 +59,7 @@ RUN /usr/libexec/httpd-prepare && rpm-file-permissions
 
 ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz /usr
 RUN gzip /usr/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.tar.gz
-RUN ls -l "/usr/"
+RUN ls -l "/usr/lib/"
 RUN echo "LoadModule weblogic_module /usr/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
 
 # Not using VOLUME statement since it's not working in OpenShift Online:
