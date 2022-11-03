@@ -49,6 +49,9 @@ RUN chown -R 1001:0 /usr/
 RUN chmod -R 775 /usr/
 RUN chown -R 1001:0 /etc/httpd/
 RUN chmod -R 775 /etc/httpd/
+RUN chown -R 1001:0 /var/www/html/
+RUN chmod -R 775 /var/www/html/
+
 # Reset permissions of filesystem to default values
 RUN /usr/libexec/httpd-prepare && rpm-file-permissions
 
