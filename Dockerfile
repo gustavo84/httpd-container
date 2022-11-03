@@ -64,7 +64,8 @@ ADD https://github.com/gustavo84/httpd-container/raw/master/plugins/WLSPlugin12.
 RUN unzip /tmp/WLSPlugin12.2.1.4.0-Apache2.2-Apache2.4-Linux_x86_64-12.2.1.4.0.zip -d /tmp/wl-plugin
 RUN ls -l "/tmp/wl-plugin/lib/"
 RUN echo "LoadModule weblogic_module /tmp/wl-plugin/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
-
+RUN chown -R 1001:0 /tmp/wl-plugin/
+RUN chmod -R 775 /tmp/wl-plugin/
 # Not using VOLUME statement since it's not working in OpenShift Online:
 # https://github.com/sclorg/httpd-container/issues/30
 # VOLUME ["${HTTPD_DATA_PATH}"]
