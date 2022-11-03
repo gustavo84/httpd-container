@@ -66,6 +66,8 @@ RUN ls -l "/tmp/wl-plugin/lib/"
 RUN echo "LoadModule weblogic_module /tmp/wl-plugin/lib/mod_wl_24.so" > /etc/httpd/conf.d/weblogic.conf
 RUN chown -R 1001:0 /tmp/wl-plugin/
 RUN chmod -R 775 /tmp/wl-plugin/
+ENV LD_LIBRARY_PATH=/tmp/wl-plugin/lib/
+RUN export LD_LIBRARY_PATH
 # Not using VOLUME statement since it's not working in OpenShift Online:
 # https://github.com/sclorg/httpd-container/issues/30
 # VOLUME ["${HTTPD_DATA_PATH}"]

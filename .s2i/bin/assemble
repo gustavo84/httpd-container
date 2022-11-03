@@ -12,7 +12,7 @@ echo ${ENV_GIT_REPO_STATICS_FILE}
 git clone ${ENV_GIT_REPO_STATICS_FILE} "/usr/repo_statics_files"
 ls -l "/var/www/html/"
 cp -a /usr/repo_statics_files/.  /var/www/html/
-export /tmp/wl-plugin/lib/
+ 
 
 # Fix source directory permissions
 fix-permissions ./
