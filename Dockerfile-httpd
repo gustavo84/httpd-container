@@ -1,0 +1,9 @@
+FROM rhel/httpd-24
+
+EXPOSE 8080
+EXPOSE 8443
+
+
+CMD ["/usr/bin/run-httpd"]
+
+
