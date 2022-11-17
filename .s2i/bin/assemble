@@ -8,7 +8,7 @@ echo "---> Creating a custom image from Apache plugin weblogic and static files"
 
 
 echo ${ENV_GIT_REPO_STATICS_FILE}
-yum install git
+
 git clone ${ENV_GIT_REPO_STATICS_FILE} "/usr/repo_statics_files"
 ls -l "/var/www/html/"
 cp -a /usr/repo_statics_files/.  /var/www/html/
