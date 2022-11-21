@@ -6,6 +6,7 @@ source ${HTTPD_CONTAINER_SCRIPTS_PATH}/common.sh
 
 echo "---> Creating a custom image from Apache plugin weblogic and static files"
 
+config_s2i
 
 echo ${ENV_GIT_REPO_STATICS_FILE}
 
