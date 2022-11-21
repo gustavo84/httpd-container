@@ -12,8 +12,8 @@ echo ${ENV_GIT_REPO_STATICS_FILE}
 ansible --version
 
 git clone ${ENV_GIT_REPO_STATICS_FILE} "/tmp/repo_statics_files"
-cp -af /tmp/repo_statics_files/. ./
-pwd
+cp -af /tmp/repo_statics_files/. /var/www/html/
+ls /var/www/html/
 #cp -a /tmp/repo_statics_files/.  /var/www/html/
  
 # Fix source directory permissions
