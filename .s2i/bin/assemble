@@ -21,6 +21,6 @@ echo 'test'
  
 # Fix source directory permissions
 fix-permissions ./
-fix-permission /var/www/html/
+#fix-permission /var/www/html/
 
 process_extending_files ${HTTPD_APP_ROOT}/src/httpd-post-assemble/ ${HTTPD_CONTAINER_SCRIPTS_PATH}/post-assemble/
