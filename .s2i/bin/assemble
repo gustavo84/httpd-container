@@ -14,8 +14,10 @@ ansible --version
 git clone ${ENV_GIT_REPO_STATICS_FILE} "/tmp/repo_statics_files"
 cp -af /tmp/repo_statics_files/. /var/www/html/
 ls /var/www/html/
+echo 'test'
 #cp -a /tmp/repo_statics_files/.  /var/www/html/
  
 # Fix source directory permissions
 fix-permissions ./
-fix-permissions /tmp/wl-plugin/lib/
+
+process_extending_files ${HTTPD_APP_ROOT}/src/httpd-post-assemble/ ${HTTPD_CONTAINER_SCRIPTS_PATH}/post-assemble/
